@@ -2,11 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
-	"log"
-	"os"
 
 	"github.com/redis/go-redis/v9"
+	"github.com/samueldasilvadev/go-baba-yaga/lua"
 )
 
 type Queue struct {
@@ -14,18 +12,10 @@ type Queue struct {
 	Context context.Context
 }
 
-func LoadScripts() {
-	files, err := os.ReadFile("./lua/addJob.lua")
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(string(files))
-}
-
 func (q *Queue) addJob() {}
 
 func main() {
-	LoadScripts()
+	lua.LoadScripts()
 	q := Queue{}
 	q.addJob()
 }
